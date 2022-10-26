@@ -1,0 +1,52 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'org.unbroken-dome.test-sets' version '4.0.0'
+    id 'jacoco'
+    id 'de.jansauer.printcoverage' version '2.0.0'
+    id 'com.adarshr.test-logger' version '3.2.0'
+}
+
+group = 'com.finx'
+version = '1.0'
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    implementation project(":common")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.liquibase:liquibase-core'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+testSets {
+    integrationTest {
+        useJUnitPlatform()
+        mustRunAfter test
+        finalizedBy jacocoTestReport
+    }
+}
+
+tasks.named('check') {
+    dependsOn(integrationTest, printCoverage)
+}
+
+testlogger {
+    theme 'mocha'
+}
+
+jacocoTestReport {
+    reports.xml.enabled true
+    reports.html.enabled true
+}

@@ -1,0 +1,11 @@
+database:
+  driverClass: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/example
+  user: postgres
+  password: postgres
+mocks:
+  accounts:
+    - accessKey: accessKey 1
+      secretKey: secretKey 1
+    - accessKey: accessKey 2
+      secretKey: secretKey 2

@@ -1,0 +1,5 @@
+rootProject.name = 'di-example'
+include 'common'
+include 'spring'
+include 'dropwizard'
+

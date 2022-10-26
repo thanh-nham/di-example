@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: spring
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: SNAKE_CASE
+    serialization:
+      fail_on_empty_beans: false
+      write_dates_as_timestamps: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/example
+    password: postgres
+    username: postgres
+  jpa:
+    database-platform:
+    hibernate:
+      ddl-auto: validate
+

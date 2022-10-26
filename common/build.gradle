@@ -1,0 +1,8 @@
+group = 'com.finx'
+version = '1.0'
+
+dependencies {
+    implementation 'javax.persistence:javax.persistence-api:2.2'
+    implementation 'org.apache.commons:commons-collections4:4.4'
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+}
