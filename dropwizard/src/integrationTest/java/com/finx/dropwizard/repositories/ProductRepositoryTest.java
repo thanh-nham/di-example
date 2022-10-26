@@ -2,6 +2,7 @@ package com.finx.dropwizard.repositories;
 
 import com.finx.dropwizard.DropwizardApplication;
 import com.finx.dropwizard.testing.AbstractRepositoryIT;
+import com.finx.dropwizard.testing.environment.TestContainerEnvironment;
 import org.junit.jupiter.api.Test;
 import ru.vyarus.dropwizard.guice.test.jupiter.TestGuiceyApp;
 
@@ -10,7 +11,10 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@TestGuiceyApp(value = DropwizardApplication.class, config = "config-test.yml")
+@TestGuiceyApp(
+        value = DropwizardApplication.class
+        , setup = TestContainerEnvironment.class
+        , config = "config-test.yml")
 public class ProductRepositoryTest extends AbstractRepositoryIT {
 
     @Test

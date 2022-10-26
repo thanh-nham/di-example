@@ -3,6 +3,7 @@ package com.finx.dropwizard.resources;
 import com.finx.domain.Product;
 import com.finx.dropwizard.DropwizardApplication;
 import com.finx.dropwizard.testing.AbstractComponentIT;
+import com.finx.dropwizard.testing.environment.TestContainerEnvironment;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 import ru.vyarus.dropwizard.guice.test.jupiter.TestDropwizardApp;
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestDropwizardApp(value = DropwizardApplication.class
         , randomPorts = true
+        , setup = TestContainerEnvironment.class
         , config = "config-test.yml")
 public class ProductResourceTest extends AbstractComponentIT {
 
