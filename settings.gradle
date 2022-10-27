@@ -1,5 +1,15 @@
 rootProject.name = 'di-example'
-include 'common'
-include 'spring'
-include 'dropwizard'
+//include 'common'
+//include 'spring'
+//include 'dropwizard'
 
+def projectDirs = [
+        'common',
+        'spring',
+        'dropwizard',
+]
+
+
+projectDirs.each {
+    includeBuild file(it)
+}

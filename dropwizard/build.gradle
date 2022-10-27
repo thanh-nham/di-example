@@ -11,6 +11,14 @@ plugins {
 group 'com.finx'
 version '1.0'
 
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 mainClassName = 'com.finx.dropwizard.DropwizardApplication'
 
 compileJava {
@@ -23,7 +31,7 @@ dependencies {
     implementation platform('ru.vyarus.guicey:guicey-bom:5.6.1-1')
     implementation platform('org.testcontainers:testcontainers-bom:1.17.5')
 
-    implementation project(':common')
+    implementation 'com.finx:common'
 
     implementation 'io.dropwizard:dropwizard-core'
     implementation 'io.dropwizard:dropwizard-client'

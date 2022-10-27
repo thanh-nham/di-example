@@ -1,5 +1,17 @@
+plugins {
+    id 'java'
+}
+
 group = 'com.finx'
 version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
 
 dependencies {
     implementation 'javax.persistence:javax.persistence-api:2.2'

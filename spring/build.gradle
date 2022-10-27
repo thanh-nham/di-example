@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'org.unbroken-dome.test-sets' version '4.0.0'
     id 'jacoco'
+    id 'java'
     id 'de.jansauer.printcoverage' version '2.0.0'
     id 'com.adarshr.test-logger' version '3.2.0'
 }
@@ -10,13 +11,22 @@ plugins {
 group = 'com.finx'
 version = '1.0'
 
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 compileJava {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
-    implementation project(":common")
+//    implementation project(":common")
+    implementation 'com.finx:common'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.liquibase:liquibase-core'

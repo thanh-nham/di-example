@@ -1,11 +1,19 @@
-subprojects {
-    apply plugin: 'java'
+def excludeDirs = []
+def projectDirs = ['common', 'dropwizard', 'spring']
 
-    repositories {
-        mavenCentral()
+tasks.register('clean') {
+    projectDirs.each {
+        if (!excludeDirs.contains(file(it).name)) {
+            dependsOn gradle.includedBuild(file(it).getName()).task(':clean')
+        }
     }
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+tasks.register('build') {
+    projectDirs.each {
+        if (!excludeDirs.contains(file(it).name)) {
+            dependsOn gradle.includedBuild(file(it).getName()).task(':build')
+        }
+    }
 }
+
