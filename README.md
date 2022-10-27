@@ -2,7 +2,7 @@
 
 ## Requirements
 
-You need :
+You need:
 - JDK 17
 - Docker
 - Docker-compose
@@ -29,18 +29,18 @@ make up
 
 Run spring boot application
 ```shell script
-./gradlew bootRun
+make start-spring
 ```
 
 Run dropwizard application
 
 ```shell script
-java -jar dropwizard/build/libs/dropwizard-example.jar db migrate dropwizard/config.yml
+make migrate
 ```
 
 
 ```shell script
-java -jar dropwizard/build/libs/dropwizard-example.jar server dropwizard/config.yml
+make start-dropwizard
 ```
 
 ### Health Check
