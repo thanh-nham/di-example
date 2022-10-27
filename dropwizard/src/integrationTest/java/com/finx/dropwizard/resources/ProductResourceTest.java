@@ -82,12 +82,12 @@ public class ProductResourceTest extends AbstractComponentIT {
     @Test
     public void shouldUpdateProductSuccessfully() {
         // Given
-        var person = dsl.product();
+        var product = dsl.product();
 
         // When
-        var response = client.target("%s/%s".formatted(PRODUCT_URI, person.getId()))
+        var response = client.target("%s/%s".formatted(PRODUCT_URI, product.getId()))
                 .request()
-                .buildPut(Entity.entity(person, MediaType.APPLICATION_JSON))
+                .buildPut(Entity.entity(product, MediaType.APPLICATION_JSON))
                 .invoke();
         var result = response.readEntity(Product.class);
 
@@ -98,10 +98,10 @@ public class ProductResourceTest extends AbstractComponentIT {
     @Test
     public void shouldDeleteSuccessfully() {
         // Given
-        var person = dsl.product();
+        var product = dsl.product();
 
         // When
-        var response = client.target("%s/%s".formatted(PRODUCT_URI, person.getId()))
+        var response = client.target("%s/%s".formatted(PRODUCT_URI, product.getId()))
                 .request()
                 .buildDelete()
                 .invoke();

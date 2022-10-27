@@ -17,7 +17,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class PersonServiceTest extends AbstractServiceTest {
+class ProductServiceTest extends AbstractServiceTest {
     @Mock
     ProductRepository repository;
 
@@ -41,7 +41,7 @@ class PersonServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    void shouldFindOnePersonById() {
+    void shouldFindOneProductById() {
         // Given
         var product = dsl.product();
 
@@ -56,7 +56,7 @@ class PersonServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    void shouldInsertPersonSuccessfully() {
+    void shouldInsertProductSuccessfully() {
         // Given
         var product = dsl.product();
 
