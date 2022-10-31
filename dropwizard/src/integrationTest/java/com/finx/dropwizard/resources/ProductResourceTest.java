@@ -1,26 +1,20 @@
 package com.finx.dropwizard.resources;
 
 import com.finx.domain.Product;
-import com.finx.dropwizard.DropwizardApplication;
 import com.finx.dropwizard.testing.AbstractComponentIT;
-import com.finx.dropwizard.testing.environment.TestContainerEnvironment;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
-import ru.vyarus.dropwizard.guice.test.jupiter.TestDropwizardApp;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@TestDropwizardApp(value = DropwizardApplication.class
-        , randomPorts = true
-        , setup = TestContainerEnvironment.class
-        , config = "config-test.yml")
 public class ProductResourceTest extends AbstractComponentIT {
 
     private final String PRODUCT_URI = "%s/products".formatted(baseUrl);
@@ -46,7 +40,7 @@ public class ProductResourceTest extends AbstractComponentIT {
     }
 
     @Test
-    void shouldFetchAOneProductById() {
+    void shouldFetchOneProductById() {
         // Given
         var product = dsl.product();
 
@@ -83,6 +77,7 @@ public class ProductResourceTest extends AbstractComponentIT {
     public void shouldUpdateProductSuccessfully() {
         // Given
         var product = dsl.product();
+        product.setPrice(BigDecimal.valueOf(100));
 
         // When
         var response = client.target("%s/%s".formatted(PRODUCT_URI, product.getId()))
@@ -93,6 +88,7 @@ public class ProductResourceTest extends AbstractComponentIT {
 
         // Then
         assertEquals(HttpStatus.SC_OK, response.getStatus());
+        assertEquals(product, result);
     }
 
     @Test
